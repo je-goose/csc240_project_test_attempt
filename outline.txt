@@ -1,0 +1,16 @@
+PROJECT OUTLINE AND STRATEGY
+
+* Overview: Construct a classification model to determine whether a given input email is SPAM or NOT SPAM
+
+* Preliminary strategy: Use KNN clustering, by itself, no need to get super fancy. Look a little bit into
+* how to process the data and pre-fit it for optimal results with KNN classification. Particularly dimensionality reduction.
+
+* TO-DO:
+*   Lizzy:
+        1. Finish data handling library.
+            * Generics for string/numerical typing?
+                * Is using hyperparameters viable here?
+            * FACTORY class for construction is needed
+        2. Produce interface, mocks for data handling library
+*   Oleg:
+        1. Research on implementing KNN, test out data handling library
