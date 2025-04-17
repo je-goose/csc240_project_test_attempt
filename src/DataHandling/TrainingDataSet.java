@@ -9,7 +9,6 @@ package DataHandling;
 
 class TrainingDataSet extends DataSet {
     private TrainingDataSet() {
-
     }
 
     public String[] getLabels() {

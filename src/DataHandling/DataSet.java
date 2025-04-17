@@ -10,14 +10,25 @@ package DataHandling;
 
 import java.util.ArrayList;
 
-abstract class DataSet<T> {
+/**
+ * Abstract class representing a dataset.
+ * @param <T> - The type of the independent variable (x-values)
+ * @param <S> - The type of the dependent variable (y-values)
+ */
+public abstract class DataSet<T,S> {
     // Member variables
     protected ArrayList<String> labels;
-    protected ArrayList<DataRow> x_values;
-    protected ArrayList<Double> y_values;
+    protected ArrayList<T> x_values;
+    protected ArrayList<S> y_values;
 
-    private DataSet() {
+    protected DataSet() {
         this.labels = new ArrayList<String>();
+    }
+
+    protected DataSet(ArrayList<String> labels, ArrayList<T> x_values, ArrayList<S> y_values) {
+        this.labels = labels;
+        this.x_values = x_values;
+        this.y_values = y_values;
     }
 
     // Getter Methods (Public)
@@ -26,9 +37,9 @@ abstract class DataSet<T> {
     public abstract double[] getIndependentLabels();
 
     // Setter Methods (Private)
-    abstract void setLabels(String[] labels);
-    abstract void setDependentValues(double[] dependentValues);
-    abstract void setIndependentLabels(double[] independentLabels);
+    protected abstract void setLabels(String[] labels);
+    protected abstract void setDependentValues(double[] dependentValues);
+    protected abstract void setIndependentLabels(double[] independentLabels);
 
     // Add'l Public Methods
     // Add'l Private Methods

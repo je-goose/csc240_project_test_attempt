@@ -17,28 +17,19 @@ public class ProcessedDataSet {
     private TrainingDataSet trainingDataSet;
     private ValidationDataSet validationDataSet;
 
-    ProcessedDataSet(String filename) {
-        try {
-            Scanner readIn = new Scanner(new File(filename)).useDelimiter("\\Z");
-
-            String[] labels = readIn.nextLine().split(",");
-
-            while (readIn.hasNextLine()) {
-                String line = readIn.nextLine();
-            }
-
-            // 1st line: labels
-            // 2nd-n lines: index 0: y-values (dependent)
-            // 2nd-nd lines: index 1-m: x-values (independent)
-            //
-
-        } catch (FileNotFoundException e) {
-
-        }
+    protected ProcessedDataSet(DataSet<> test, DataSet<> train, DataSet<> validate) {
+        this.testingDataSet = (TestingDataSet) test;
+        this.trainingDataSet = (TrainingDataSet) train;
+        this.validationDataSet = (ValidationDataSet) validate;
     }
 
-    public static ProcessedDataSet constructProcessedDataSet(String filename) {
-        ProcessedDataSet processedDataSet = new ProcessedDataSet(filename);
-        return processedDataSet;
+    public ProcessedDataSet constructProcessedDataSet(String filename) {
+        return DataIntake.constructPrDataSet(filename);
     }
+
+    public DataSet getTestingDataSet() {}
+
+    public DataSet getTrainingDataSet() {}
+
+    public DataSet getValidationDataSet() {}
 }
