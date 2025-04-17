@@ -7,27 +7,29 @@ Purpose: Revisit core ideas and best practices with machine learning, text proce
  */
 package DataHandling;
 
-class TrainingDataSet extends DataSet {
-    private TrainingDataSet() {
+import java.util.ArrayList;
+
+class TrainingDataSet<T,S> extends DataSet<T,S> {
+    protected TrainingDataSet(ArrayList<String> labels, ArrayList<T> x_values, ArrayList<S> y_values) {
     }
 
     public String[] getLabels() {
         return new String[] {""};
     };
-    public double[] getDependentValues() {
-        return new double[0];
+    public T[] getDependentValues() {
+        return null;
     };
-    public double[] getIndependentLabels() {
-        return new double[0];
+    public S[] getIndependentLabels() {
+        return null;
     };
 
     public void setLabels(String[] labels) {
-
+        this.labels = labels;
     };
-    public void setDependentValues(double[] dependentValues) {
-
+    public void setDependentValues(ArrayList<T> dependentValues) {
+        this.x_values = dependentValues;
     };
-    public void setIndependentLabels(double[] independentLabels) {
-
+    public void setIndependentLabels(ArrayList<S> independentLabels) {
+        this.y_values = independentLabels;
     };
 }

@@ -54,5 +54,5 @@ public class KNNModel extends Model {
             double distance = distances.get(i);
         }
     }
-    public void makePredictions() {}
+    public void makePredictions(double[] train, double[] test, int numNeighbors) {}
 }

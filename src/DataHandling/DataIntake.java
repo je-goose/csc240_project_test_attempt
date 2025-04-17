@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 
-public class DataIntake {
-    protected static ProcessedDataSet constructPrDataSet(String filename) {
+public class DataIntake<T,S> {
+    protected static ProcessedDataSet constructPrDataSet(String filename, int labelIndex) {
         try {
             Scanner scanner = new Scanner(new File(filename));
             String[] labels = scanner.nextLine().split(",");
@@ -23,26 +23,37 @@ public class DataIntake {
                 String line = scanner.nextLine();
                 String[] values = line.split(",");
                 ArrayList<Double> x_row = new ArrayList<>();
-                y_values.add(Double.parseDouble(values[0]));
-                for (int i = 1; i < values.length - 1; i++) {
+                y_values.add(Double.parseDouble(values[labelIndex]));
+                for (int i = 0; i < values.length - 1; i++) {
+                    if (i == labelIndex) continue;
                     x_row.add(Double.parseDouble(values[i]));
                 }
                 x_values.add(x_row);
             }
             scanner.close();
 
+            // split dataset
             int sizeOfDataSet = y_values.size();
-            int index1 = ( 7 * (sizeOfDataSet) ) / 10; // 70% of the data
-            int index2 = 9 * sizeOfDataSet / 10; // 20% of the data
+            int index1 = ( 7 * sizeOfDataSet ) / 10; // 70% of the data
+            int index2 = ( 9 * sizeOfDataSet ) / 10; // 20% of the data
             int index3 = sizeOfDataSet; // 10% of the data
 
             // todo: create the DataSet objects
+            DataSet<Double, Boolean> trainingDataSet = new TrainingDataSet();
+            DataSet<Double, Boolean> testingDataSet = new TestingDataSet();
+            DataSet<Double, Boolean> validationDataSet = new ValidationDataSet();
+
+            return new ProcessedDataSet(trainingDataSet, testingDataSet, validationDataSet);
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("In: class DataIntake\n" + "Error reading file: " + filename);
         }
 
-        return prDataSet;
+        return null;
     }
+
+    protected static ProcessedDataSet constructPrDataSetText(String filename, int labelIndex) {}
+
+    protected static ProcessedDataSet constructPrDataSetNum(String filename, int labelIndex) {}
 }

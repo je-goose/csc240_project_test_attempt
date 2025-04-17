@@ -7,14 +7,26 @@ Purpose: Revisit core ideas and best practices with machine learning, text proce
  */
 package DataHandling;
 
-class ValidationDataSet extends DataSet {
+import java.util.ArrayList;
+
+/**
+ * Class implementing a validation dataset.
+ * @param <T> - The type of the independent variable (x-values)
+ * @param <S> - The type of the dependent variable (y-values)
+ */
+class ValidationDataSet<T,S> extends DataSet<T,S> {
+
+    protected ValidationDataSet(ArrayList<String> labels, ArrayList<T> x_values, ArrayList<S> y_values) {
+
+    }
+
     public String[] getLabels() {
         return new String[] {""};
     };
-    public double[] getDependentValues() {
-        return new double[0];
+    public ArrayList<T> getDependentValues() {
+        return new ArrayList<>();
     };
-    public double[] getIndependentLabels() {
+    public S[] getIndependentLabels() {
         return new double[0];
     };
 
