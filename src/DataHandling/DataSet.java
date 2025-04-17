@@ -17,15 +17,11 @@ import java.util.ArrayList;
  */
 public abstract class DataSet<T,S> {
     // Member variables
-    protected ArrayList<String> labels;
+    protected String[] labels;
     protected ArrayList<T> x_values;
     protected ArrayList<S> y_values;
 
-    protected DataSet() {
-        this.labels = new ArrayList<String>();
-    }
-
-    protected DataSet(ArrayList<String> labels, ArrayList<T> x_values, ArrayList<S> y_values) {
+    protected DataSet(String[] labels, ArrayList<T> x_values, ArrayList<S> y_values) {
         this.labels = labels;
         this.x_values = x_values;
         this.y_values = y_values;
@@ -33,13 +29,13 @@ public abstract class DataSet<T,S> {
 
     // Getter Methods (Public)
     public abstract String[] getLabels();
-    public abstract double[] getDependentValues();
-    public abstract double[] getIndependentLabels();
+    public abstract T[] getDependentValues();
+    public abstract S[] getIndependentLabels();
 
     // Setter Methods (Private)
     protected abstract void setLabels(String[] labels);
-    protected abstract void setDependentValues(double[] dependentValues);
-    protected abstract void setIndependentLabels(double[] independentLabels);
+    protected abstract void setDependentValues(ArrayList<T> dependentValues);
+    protected abstract void setIndependentLabels(ArrayList<S> independentLabels);
 
     // Add'l Public Methods
     // Add'l Private Methods
